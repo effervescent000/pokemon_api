@@ -20,12 +20,18 @@ one_user_schema = UserSchema()
 multi_user_schema = UserSchema(many=True)
 
 
+# GET endpoints
+
+
 @bp.route("/check", methods=["GET"])
 @jwt_required(optional=True)
 def check_for_logged_in_user():
     if current_user != None:
         return jsonify(one_user_schema.dump(current_user))
     return jsonify({})
+
+
+# POST endpoints
 
 
 @bp.route("/signup", methods=["POST"])
@@ -58,3 +64,14 @@ def login():
     access_token = create_access_token(identity=username)
     set_access_cookies(response, access_token)
     return response
+
+
+# DELETE endpoints
+
+
+@bp.route("/logout", methods=["DELETE"])
+@jwt_required()
+def logout():
+    response = jsonify({"msg": "logout successful"})
+    unset_jwt_cookies(response)
+    return response, 200
