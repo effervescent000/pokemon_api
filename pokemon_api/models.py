@@ -25,3 +25,4 @@ class Note(db.Model):
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     pokemon_id = db.Column(db.Integer, nullable=False)
+    private = db.Column(db.Boolean, nullable=False)
