@@ -32,4 +32,8 @@ def create_app():
 
         app.register_blueprint(auth.bp)
 
+        from . import notes
+
+        app.register_blueprint(notes.bp)
+
         return app
