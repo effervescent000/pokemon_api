@@ -1,0 +1,2 @@
+FLASK_APP=pokemon_api
+FLASK_ENV=development
